@@ -40,12 +40,12 @@ const useChat = (getAllConversation: () => void) => {
       chunk += new TextDecoder("utf-8").decode(value);
       const json_chunk = JSON.parse(chunk);
       const content = json_chunk?.formatted_answer;
-      
+
       if (done) {
         getAllConversation();
         setLoading(false);
         setStreamState("");
-        setMessages([...newmessages, { formatted_content: content, type: "Receive" }]);
+        setMessages([...newmessages, { content: content, type: "Receive" }]);
         controller.abort();
         return;
       }
