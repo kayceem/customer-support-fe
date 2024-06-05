@@ -12,7 +12,7 @@ export default {
           DEFAULT: "#256FFF",
           light: "#E7EFFF",
         },
-        gray: {          
+        gray: {
           DEFAULT: "#737373",
           darker: "#000000",
           dark: "#2A2A2A",
@@ -21,14 +21,14 @@ export default {
           lightGray: "#404040",
           border: "#E6E8E7"
         },
-        black:{
+        black: {
           DEFAULT: "#000000",
           light: "#232323"
         },
-        red:{
+        red: {
           DEFAULT: "#E26464"
         },
-        green:{
+        green: {
           DEFAULT: "#32543B"
         }
 

@@ -7,6 +7,7 @@ import axiosService from '../../utils/apiServices'
 import { useAuth } from '../../context/AuthContext';
 import { Navigate } from "react-router-dom";
 import { Drawer } from "antd";
+import VoiceModal from '../../components/VoiceModel';
 import Markdown from "react-markdown";
 
 
@@ -28,7 +29,14 @@ const Home = () => {
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
   }
+  const [isModalOpen, setModalOpen] = useState(false);
 
+  const handleButtonClick = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
   const [submitted, setSubmitted] = useState<boolean>(false);
   const [conversationData, setConversationData] = useState<any>([]);
@@ -177,22 +185,18 @@ const Home = () => {
                       {content && (
                         <>
                           <div className="flex w-[100%] items-center space-x-4">
-                            <img className="flex w-[34px] h-[34px]" src={!isSender ? Icons.HrUserIcon : Icons.UserNameIcons} alt="logo" />
+                            {
+                              !isSender ? 
+                              <img className="flex w-[34px] h-[32px]" src={Icons.HrUserIcon} alt="logo" /> :
+                              <img className="flex w-[32px] h-[32px]" src={Icons.UserNameIcons} alt="logo" />
+                            }
                             <h3 className="text-darker text-xl font-semibold">{!isSender ? "Customer Support" : "You"}</h3>
                           </div>
                           <div className="flex flex-col w-[100%]">
-                            <p className="text-gray-dark text-sm pl-14 text-justify md:text-lg">
+                            <p className="text-gray-dark text-sm pl-14 text-justify md:text-base">
                               {!isSender ? (<Markdown>{removeMarkers(content)}</Markdown>) : content}
                             </p>
-                            {/* {references && (
-                              <div className="flex w-[100%]">
-                                <p className="text-gray-dark text-xs pl-14 text-justify md:text-lg">
-                                  References: {references}
-                                </p>
-                              </div>
-                            )} */}
                           </div>
-
                         </>
                       )}
                     </div>
@@ -202,7 +206,7 @@ const Home = () => {
               {loading ? (
                 <div className='w-4/5'>
                   <div className="flex items-center space-x-4">
-                    <img className="flex" src={Icons.HrUserIcon} alt="logo" />
+                    <img className="flex w-[34px] h-[32px]" src={Icons.HrUserIcon} alt="logo" />
                     <h3 className="text-darker text-xl font-semibold">Customer Support</h3>
                   </div>
                   <p className='text-gray-dark w-[100%] text-sm pl-14 md:text-lg text-justify'>
@@ -222,6 +226,10 @@ const Home = () => {
                   required
                 />
                 <div className="flex gap-3 pr-2 md:p-0">
+                {/* <button type="button" onClick={handleButtonClick}>
+                    <img src={Icons.MicIcon} alt="VoiceIcon" className="object-cover" />
+                  </button>
+                  {isModalOpen && <VoiceModal closeModal={closeModal} setInputValue={setInputValue} />} */}
                   <button type="submit" className={`bg-blue p-2 rounded-md ${!inputValue && 'opacity-50 cursor-not-allowed'}`} disabled={!inputValue}>
                     <img src={Icons.ArrowIcon} alt="ArrowIcon" />
                   </button>

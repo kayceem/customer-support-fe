@@ -65,7 +65,7 @@ const Sidebar = ({ setMessages, conversationData, setSubmittedState }: any) => {
 
                                     <img src={icons.MessageIcon} alt="chat" />
 
-                                    <p className='w-full mb-2 text-sm text-start md:text-base line-clamp-1 lg:text-lg'>{conversation.title}</p>
+                                    <p className='w-full mb-2 text-sm text-start md:text-sm line-clamp-1 lg:text-lg'>{conversation.title}</p>
                                 </div>
                                 {/* {activeConversation === index && (
                                         <span>
